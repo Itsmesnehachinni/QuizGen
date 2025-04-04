@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="03f94d28-e8c7-452c-a781-4e53c5e348ce" name="Changes" comment="Add data to response class">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/BackendServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/CartEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/LoginConstant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/OrderEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/PaymentEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/PharmacyStatusEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/constants/UserEnum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/controller/CartController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/controller/MedicineController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/controller/PharmaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/controller/UserController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/OrderItems.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/Orders.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/Pharmacy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/PharmacyMedicines.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/entity/UsersInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/exception/MediXpressException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/CartRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/CustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/OrderItemsRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/OrdersRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/PharmacyMedicinesRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/PharmacyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/repository/UsersInfoRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/AddCartRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/AddMedicineRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/CartItemRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/CustomerRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/OrderRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/PharmacyRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/ResetPasswordRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/request/UpdateMedicineRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/CartItemResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/CartItemsResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/Medicine.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/MedicinesResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/OrderResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/PharmaciesResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/response/PharmacyDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/CartService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/MedicineService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/PharmaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/service/UserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/CartServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/CustomerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/MedicineServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/PharmaServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/medixpress/backend_service/serviceImpl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/medixpress/backend_service/BackendServiceApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="feature/backend-changes" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2nCyU0e32dYoSzebLzgov2w8ZE6" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/zadmin/Documents/medixpress/user-service"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.medixpress.backend_service.response" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="user-service" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="user-service" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="03f94d28-e8c7-452c-a781-4e53c5e348ce" name="Changes" comment="" />
+      <created>1728491366102</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728491366102</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Add data to response class">
+      <option name="closed" value="true" />
+      <created>1728579981182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728579981183</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add data to response class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add data to response class" />
+  </component>
+</project>

@@ -1,0 +1,101 @@
+/* Global styles */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrollbars */
+}
+
+/* The main container */
+#root {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background-color: #1877f2; /* Header background color */
+    color: white;
+    padding: 0px;
+    text-align: center;
+    flex-shrink: 0; /* Ensure header doesn't shrink */
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    width: 100%;
+    z-index: 100; /* Ensure header stays on top of everything */
+}
+
+.homepage-carousel-container {
+    margin-top: 0px; /* Space for the header */
+    width: 100vw; /* Full width */
+    height: 100vh ; /* Full height minus the header */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Full height carousel images */
+.carousel .slide img {
+    width: 100vw;
+    height: calc(100vh - 20px);
+    object-fit: cover; /* Ensures images cover the entire area */
+    max-width: 200%; /* Maintain image aspect ratio */
+}
+
+
+/* Hero section styles */
+.hero-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9); /* Transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    text-align: center;
+    z-index: 10; /* Ensure it's above the carousel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1877f2; /* Facebook blue */
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #1877f2;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cta-buttons button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(24, 119, 242, 0.3), 0 6px 20px rgba(128, 0, 128, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-buttons button:hover {
+    background-color: #4c00b0;
+    box-shadow: 0 6px 10px rgba(24, 119, 242, 0.5), 0 8px 30px rgba(128, 0, 128, 0.5);
+}
+
+/* Legend for carousel */
+.legend {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+}

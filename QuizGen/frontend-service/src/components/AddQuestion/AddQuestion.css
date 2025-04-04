@@ -1,0 +1,42 @@
+.add-medicine-modal-title {
+  color: black;
+  margin: 1%;
+  padding: 0.3%;
+}
+
+.add-medicine-modal-header {
+  padding: 2%;
+  margin: 1.5%;
+}
+
+.add-medicine-modal-body {
+  padding: 0.5%;
+  margin: 1.5%;
+  margin-top: 0%
+}
+
+.add-medicine-modal-form {
+  padding: 1%;
+  margin: 0.5%;
+  text-align: justify;
+  color: black;
+  margin-top: 0%;
+}
+
+.custom-input {
+  border: 1px solid rgba(36, 150, 220, 0.7);
+  border-radius: 0.25rem;
+}
+
+.custom-input:focus {
+  border: 2px solid #0056b3;
+}
+
+.custom-text-danger {
+  color: #dc3545;
+  font-size: 1.25em;
+}
+
+.add-medicine-label-text {
+  font-size: larger;
+}

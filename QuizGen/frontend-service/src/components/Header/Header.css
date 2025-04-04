@@ -1,0 +1,126 @@
+/* Container for header */
+.header-banner {
+    background: linear-gradient(to right, white, #1877f2, #6a0dad); /* Gradient from white to blue to violet */
+    padding: 20px 30px; /* Expanded padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Stronger shadow effect */
+    margin-bottom: 10px; /* Space between header and next section */
+}
+
+/* Logo and Brand Name section */
+.logo-brand {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 60px; /* Adjusted size */
+    height: auto;
+    margin-right: 15px;
+}
+
+.brand-name {
+    color: #1877f2; /* Blue for the brand name */
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Navigation menu */
+.nav-menu {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.nav-item {
+    color: white;
+    font-size: 1.4rem; /* Increased font size */
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #6a0dad; /* Violet color on hover */
+}
+
+.nav-item::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background-color: #6a0dad;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+/* Right-aligned buttons */
+.header-buttons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.data-insights, .download-btn {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 10px 25px; /* Adjusted padding */
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(24, 119, 242, 0.3), 0 6px 20px rgba(128, 0, 128, 0.3); /* Stronger shadow effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-insights:hover, .download-btn:hover {
+    background-color: #4c00b0;
+    box-shadow: 0 8px 15px rgba(24, 119, 242, 0.5), 0 8px 25px rgba(128, 0, 128, 0.5);
+}
+
+.data-insights i, .download-btn i {
+    margin-right: 5px;
+}
+
+/* Navigation menu link styles */
+.nav-menu a {
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-menu a:hover {
+    color: #EAF1FC; /* Light blue on hover */
+}
+
+.login-btn, .logout-btn {
+    background-color: #1877f2; /* Same blue as the other buttons */
+    color: white; /* Ensure the text is white */
+    border: none;
+    padding: 10px 25px; /* Same padding as other buttons */
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(24, 119, 242, 0.3), 0 6px 20px rgba(128, 0, 128, 0.3); /* Shadow for consistency */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-btn i, .logout-btn i {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+.login-btn:hover, .logout-btn:hover , .data-insights:hover{  
+    background-color: #4c00b0; /* Same hover color as other buttons */
+    color: white; /* Ensure the text is white */
+    box-shadow: 0 8px 15px rgba(24, 119, 242, 0.5), 0 8px 25px rgba(128, 0, 128, 0.5); /* Same hover effect */
+}

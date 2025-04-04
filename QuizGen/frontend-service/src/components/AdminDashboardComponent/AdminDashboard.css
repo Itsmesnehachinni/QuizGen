@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    padding: 0%;
+    height: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+.header-font-size {
+    font-size: larger;
+}
+
+.data-font-size {
+    font-size: large;
+}
+.add-Medicine-btn-container{
+    margin-right:22%;
+    margin-top:3%;
+  
+}
+
+.pharmacy-medicines-container{
+    min-height: auto;
+    flex : 1;
+}

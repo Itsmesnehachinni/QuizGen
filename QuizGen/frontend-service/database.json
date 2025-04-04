@@ -1,0 +1,400 @@
+{
+  "pharmacies": [
+    {
+      "pharmacyId": 1,
+      "pharmaName": "Pharmacy A",
+      "phoneNumber": "123-456-7890",
+      "street": "123 Main St",
+      "city": "Cityville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC123456",
+      "medicines": [
+        "dolo",
+        "napra"
+      ],
+      "id": "21a1"
+    },
+    {
+      "pharmacyId": 2,
+      "pharmaName": "Pharmacy B",
+      "phoneNumber": "987-654-3210",
+      "street": "456 Elm St",
+      "city": "Townsville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC789012",
+      "medicines": [
+        "dolo"
+      ],
+      "id": "4ff2"
+    },
+    {
+      "pharmacyId": 3,
+      "pharmaName": "Pharmacy C",
+      "phoneNumber": "123-456-7890",
+      "street": "123 Main St",
+      "city": "Cityville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC123456",
+      "medicines": [
+        "napra"
+      ],
+      "id": "775b"
+    },
+    {
+      "pharmacyId": 4,
+      "pharmaName": "Pharmacy D",
+      "phoneNumber": "987-654-3210",
+      "street": "456 Elm St, Townsville",
+      "city": "Townsville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC789012",
+      "medicines": [
+        "citrizen"
+      ],
+      "id": "529e"
+    },
+    {
+      "pharmacyId": 5,
+      "pharmaName": "Pharmacy E",
+      "phoneNumber": "123-456-7890",
+      "street": "123 Main St",
+      "city": "Cityville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC123456",
+      "medicines": [
+        "napra",
+        "citrizen"
+      ],
+      "id": "91b9"
+    },
+    {
+      "pharmacyId": 6,
+      "pharmaName": "Pharmacy F",
+      "phoneNumber": "987-654-3210",
+      "street": "456 Elm St",
+      "city": "Townsville",
+      "emailAddress": "test@gmail.com",
+      "licenseNumber": "LIC789012",
+      "medicines": [
+        "combiflam",
+        "nice"
+      ],
+      "id": "681b"
+    }
+  ],
+  "pharmacyMedicines": [
+    {
+      "pharmaMedicineId": 1,
+      "pharmacyId": 1,
+      "medicineName": "Paracetamol",
+      "manufacturingDate": "2023-01-01",
+      "expiryDate": "2025-01-01",
+      "manufacturingCompany": "ABC Pharmaceuticals",
+      "medicineDescription": "Pain reliever and a fever reducer.",
+      "price": 10,
+      "stock": 100,
+      "id": "58f8"
+    },
+    {
+      "pharmaMedicineId": 2,
+      "pharmacyId": 1,
+      "medicineName": "Dolo",
+      "manufacturingDate": "2023-01-01",
+      "expiryDate": "2025-01-01",
+      "manufacturingCompany": "ABC Pharmaceuticals",
+      "medicineDescription": "Pain reliever and a fever reducer.",
+      "price": 10,
+      "stock": 100,
+      "id": "383c"
+    },
+    {
+      "pharmaMedicineId": 3,
+      "pharmacyId": 1,
+      "medicineName": "calpal",
+      "manufacturingDate": "2023-01-01",
+      "expiryDate": "2025-01-01",
+      "manufacturingCompany": "ABC Pharmaceuticals",
+      "medicineDescription": "Pain reliever and a fever reducer.",
+      "price": 10,
+      "stock": 100,
+      "id": "5f20"
+    },
+    {
+      "pharmaMedicineId": 4,
+      "pharmacyId": 2,
+      "medicineName": "Citrizen",
+      "manufacturingDate": "2023-01-01",
+      "expiryDate": "2025-01-01",
+      "manufacturingCompany": "ABC Pharmaceuticals",
+      "medicineDescription": "Pain reliever and a fever reducer.",
+      "price": 10,
+      "stock": 100,
+      "id": "f3aa"
+    },
+    {
+      "pharmaMedicineId": 5,
+      "pharmacyId": 2,
+      "medicineName": "Napra",
+      "manufacturingDate": "2023-01-01",
+      "expiryDate": "2025-01-01",
+      "manufacturingCompany": "ABC Pharmaceuticals",
+      "medicineDescription": "Pain reliever and a fever reducer.",
+      "price": 10,
+      "stock": 100,
+      "id": "6ecf"
+    }
+  ],
+  "cart": [
+    {
+      "id": "e906",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "4",
+          "quantity": 5
+        },
+        {
+          "pharmaMedicineId": "5",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "71f8",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "3",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "2f7d",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "badf",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "2ab4",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "acff",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "5d23",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "f198",
+      "customerId": 1,
+      "items": [
+        {
+          "pharmaMedicineId": "1",
+          "quantity": 1
+        }
+      ]
+    }
+  ],
+  "customers": [
+    {
+      "customerId": "1",
+      "customerName": "Suganya",
+      "customerStreetName": "Anna Nagar",
+      "city": "chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "phoneNumber": "9090909090",
+      "emailAddress": "suganya@gmail.com",
+      "postalCode": "524001",
+      "password": "testpass",
+      "id": "a0f0"
+    }
+  ],
+  "pharmacy": [
+    {
+      "pharmacyId": 1,
+      "pharmaName": "Vijaya",
+      "pharmaStreetName": "Anna Nagar",
+      "city": "chennai",
+      "state": "Tamil Nadu",
+      "country": "India",
+      "phoneNumber": "9090909092",
+      "emailAddress": "vijaya@gmail.com",
+      "postalCode": "524001",
+      "password": "Vijayapass",
+      "licenseNumber": "A123411",
+      "isAlwaysAvailable": true,
+      "id": "5f41"
+    }
+  ],
+  "users": [
+    {
+      "role": "PHARMA_ADMIN",
+      "id": "1",
+      "userName": "9090909092",
+      "password": "Vijayapass"
+    },
+    {
+      "role": "CUSTOMER",
+      "id": "2",
+      "userName": "9090909091",
+      "password": "Vijayapass"
+    }
+  ],
+  "cartItems": [
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "quantity": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "f618"
+    },
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "quantity": 2,
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "1d47"
+    },
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "quantity": 2,
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "335e"
+    },
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "quantity": 2,
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "3046"
+    },
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "quantity": 2,
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "1c32"
+    },
+    {
+      "customerId": 1,
+      "pharmaMedicineId": 2,
+      "medicineName": "Dolo",
+      "medicineDescription": "Fever",
+      "manfacturingCompany": "Roja Pharmetical Company",
+      "quantity": 2,
+      "expiryDate": "2024-12-12",
+      "totalAmount": 324,
+      "id": "4aca"
+    }
+  ],
+  "orders": {
+    "customer": {
+      "customerId": 1,
+      "customerStreetName": "Anna Nagar",
+      "customerName": "Suganya",
+      "city": "Chennai",
+      "state": "TamilNadu",
+      "country": "India",
+      "phoneNumber": "9894859657",
+      "emailAddress": "suganya@gmail.com",
+      "postalCode": "641025"
+    },
+    "totalBillAmount": 234,
+    "orderId": 1,
+    "orderItemResponseList": [
+      {
+        "medicineName": "Dolo",
+        "quantity": 5,
+        "pricePerItem": 2,
+        "totalMedicineAmount": 10
+      },
+      {
+        "medicineName": "Napra",
+        "quantity": 10,
+        "pricePerItem": 3,
+        "totalMedicineAmount": 30
+      },
+      {
+        "medicineName": "Eumosome",
+        "quantity": 7,
+        "pricePerItem": 8,
+        "totalMedicineAmount": 56
+      },
+      {
+        "medicineName": "Citigen",
+        "quantity": 12,
+        "pricePerItem": 5,
+        "totalMedicineAmount": 60
+      },
+      {
+        "medicineName": "Otobiotic",
+        "quantity": 2,
+        "pricePerItem": 15,
+        "totalMedicineAmount": 30
+      },
+      {
+        "medicineName": "Candid",
+        "quantity": 8,
+        "pricePerItem": 6,
+        "totalMedicineAmount": 48
+      }
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+.logout-page {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height */
+    background-color: #f0f0f5; /* Fallback background */
+    text-align: center;
+}
+
+.logout-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the whole background */
+    z-index: -1; /* Places the image behind the content */
+}
+
+.logout-message {
+    background: rgba(255, 255, 255, 0.8); /* Slightly transparent white background */
+    padding: 50px;
+    border-radius: 10px;
+    margin-left: 60px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    z-index: 1; /* Ensures the content is above the background */
+}
+
+.logout-message h1 {
+    font-size: 2.5rem;
+    color: #1877f2; /* Facebook blue */
+    margin-bottom: 20px;
+}
+
+.logout-message p {
+  
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cta-button {
+    background-color: #1877f2;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #4c00b0;
+    box-shadow: 0 8px 15px rgba(24, 119, 242, 0.5), 0 8px 25px rgba(128, 0, 128, 0.5);
+}
+
+.logout-page-img{
+    padding: auto;
+    width: 70%;
+    height: auto !important;
+    margin: 0%;
+}
