@@ -1,81 +1,119 @@
-
-html, body {     
-  margin: 0;  /* Remove default margin */
-  /* min-height: 100vh;  */
-  overflow: auto;
-  padding: 0%;
-  }
-
-
-.pharmacy-card-container {
-  padding: 2%;
-  padding-bottom: 0%;
-  width: 100%;
-  height: 100%;
-  padding-top: 0.75%;
-}
-
-.pharmacy-card {
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: px solid #007bff;
-  /* Optional border color */
-  border-radius: 0.8rem;
-  /* Rounded corners */
-  text-align: left;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-  font-size: large;
-  margin: 43px;
-  
-}
-
-.pharmacy-card:hover {
-  transform: translateY(-7.5px);
-  /* box-shadow: 15px 15px 15px rgba(0, 123, 255, 0.2); */
-  box-shadow: 11px 11px 11px 11px rgba(181, 10, 158, 0.2);
-
-}
-
-.pharmacy-card .card-header {
-  background-color: #0b8fa4;
-  color: white;
-}
-
-.pharmacy-card .list-group-item {
-  background-color: lightgrey;
-}
-
-.pharmacy-card .list-group-item:not(:last-child) {
-  border-bottom: 1px solid #007bff;
-  /* Custom border for list items */
-}
-
-.view-medicines-btn {
-  transition: background-color 0.2s;
-  font-size: large;
-}
-
-.view-medicines-btn:hover {
-  background-color: #0056b3;
-  /* Darker button on hover */
-  /* font-size: larger; */
-}
-
-.customer-dashboard {
-  background-image: url('../../../../public/images/customer-dashboard-pharmacies.webp');
-  background-size: cover ;  
-  background-repeat: no-repeat;  
-  background-position: center;
-  background-attachment: fixed;
-  min-height: auto; 
-  padding: 20px; 
-  box-sizing: border-box;
-  flex: 1;
+/* Style for the dashboard page */
+.dashboard-page {
+  /* margin-top: 0%; */
+  background-size: cover;
   padding: 20px;
   overflow: auto;
+  background-repeat: repeat;  
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  margin: 0;
+  /* overflow: hidden; */
+  background-image: url(../../../../public/images/dashboard-background.jpg)
 }
 
-.search-bar{
-  padding:1%;
-  padding-top:3%;
-  margin-right: 3.5%;
+/* Centering the dashboard nav */
+.dashboard-nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
+
+.nav-item {
+  background-color: #1877f2;
+  color: white;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-item i, .nav-item svg {
+  margin-right: 8px;
+}
+
+.nav-item:hover {
+  background-color: #6a0dad;
+  color: white; /* Ensure text stays white */
+  transform: translateY(-2px);
+}
+
+/* Style for the stats cards */
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.stats-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  padding: 20px;
+  width: 26%;
+  height: auto;
+  text-align: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stats-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #1877f2;
+}
+/* General button styles */
+button {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for the buttons */
+button:hover {
+  /*background-color: #6a0dad; Violet background on hover */
+  color: white; /* Ensure text stays white */
+  box-shadow: 0 6px 10px rgba(106, 13, 173, 0.5), 0 8px 30px rgba(106, 13, 173, 0.5);
+}
+.pandemic-measures {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 30px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pandemic-measures h2 {
+  font-size: 1.8rem;
+  color: #1877f2; /* Use the blue for consistency */
+  margin-bottom: 15px;
+}
+
+.pandemic-measures ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.pandemic-measures li {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333; /* Text color for better readability */
+}
+
+.dashboard-title-container{
+  margin-top: 0.5%;
+  padding: 0.3%;
+  text-align: center;
+  color: white ;    
+}
+

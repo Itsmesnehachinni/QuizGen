@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Typography, Radio, RadioGroup, FormControl, FormControlLabel, Button, Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const PerformQuiz = () => {
   const [quiz, setQuiz] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [score, setScore] = useState(null);
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const navigate = useNavigate(); 
+
 
   // Fetch quiz questions (this could come from an API or hardcoded data)
   useEffect(() => {
     fetchQuizQuestions().then(data => setQuiz(data));
   }, []);
+
+  const handleNavigation = () => {
+    navigate('/userDashboard');  // Navigates to '/new-page'
+  };
 
   const handleAnswerChange = (questionId, answer) => {
     setUserAnswers(prev => ({
@@ -24,16 +32,16 @@ const PerformQuiz = () => {
     const totalScore = quiz.reduce((score, question) => {
       return userAnswers[question.id] === question.correctAnswer ? score + 1 : score;
     }, 0);
-
+    setQuizSubmitted(true);
     setScore(totalScore);
   };
 
   return (
     <Container>
       <div className='performquiz-header-text'>
-      <Typography variant="h4" gutterBottom>
-        Your Questions
-      </Typography>
+        <Typography variant="h4" gutterBottom>
+          Your Questions
+        </Typography>
       </div>
       {quiz.length > 0 ? (
         <form onSubmit={submitQuiz}>
@@ -55,11 +63,23 @@ const PerformQuiz = () => {
                   ))}
                 </RadioGroup>
               </FormControl>
+              {score !== null && userAnswers[question.id] && (
+                <Typography variant="body2" style={{ marginTop: '8px' }}>
+                  <strong>Your Answer: </strong>{userAnswers[question.id]}
+                </Typography>
+              )}
+              {score !== null && (
+                <Typography variant="body2" style={{ marginTop: '8px', color: 'green' }}>
+                  <strong>Correct Answer: </strong>{question.correctAnswer}
+                </Typography>
+              )}
             </div>
           ))}
-          <Button type="submit" variant="contained" color="primary">
+          {!quizSubmitted ? (<Button type="submit" variant="contained" color="primary">
             Submit Quiz
-          </Button>
+          </Button>):(<Button type="button" variant="contained" color="primary" onClick={handleNavigation}>
+            Go to Dashboard
+          </Button>)}
           {score !== null && (
             <Alert severity="success" style={{ marginTop: '16px' }}>
               <Typography variant="h6">Your Score: {score}/{quiz.length}</Typography>

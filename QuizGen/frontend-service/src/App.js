@@ -38,10 +38,11 @@ function App() {
                     <Route path="/admin-register" element={<Admin_Register />} />
                     <Route path="/contact" element={<ContactPage />} />
                     <Route path="/logout" element={<LogoutPage />} />
-                      <Route path="/userDashboard/progressTracking" element={<ProgressTracking />} />
-            <Route path="/userDashboard/quiz" element={<UserQuiz />} />
+                      {/* <Route path="/userDashboard/progressTracking" element={<ProgressTracking />} /> */}
+            {/* <Route path="/performQuiz" element={<UserQuiz />} /> */}
             <Route path="/admin-dashboard" element={<AdminDashboard />} />
             <Route path="/performQuiz" element={<PerformQuiz />} />
+            <Route path="/userDashboard" element={<ProgressTracking />} />
       </Routes>
             </Suspense>
             <Footer />

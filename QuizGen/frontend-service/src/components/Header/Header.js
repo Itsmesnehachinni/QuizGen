@@ -11,13 +11,13 @@ const Header = () => {
     const dispatch = useDispatch();
     const isLoggedIn = useSelector(state => state.isLoggedIn);
     const role = useSelector(state => state.role);
-    
+
     const customerId = useSelector((state) => state.customerId);
 
 
 
     const handleLogout = async () => {
-        if (role == 'CUSTOMER') {
+        if (role === 'CUSTOMER') {
             try {
                 const deleteResponse = await axios.delete(`http://localhost:3000/api/v1/order-service/cart/deleteAllCartItemsByCustomerId`
                     , {
@@ -54,9 +54,9 @@ const Header = () => {
                 {/* Center-aligned Navigation Menu */}
                 <nav className="nav-menu">
                     <Link to="/" className="nav-item"><i className="fas fa-home"></i> Home</Link>
-                    {isLoggedIn && (<Link 
-                    to= { role == 'CUSTOMER' ? "/userDashboard/progressTracking" : "/admin-dashboard"}
-                    className="nav-item"><i className="fas fa-tachometer-alt"></i> Dashboard</Link>)}
+                    {isLoggedIn && (<Link
+                        to={role === 'CUSTOMER' ? "/userDashboard" : "/admin-dashboard"}
+                        className="nav-item"><i className="fas fa-tachometer-alt"></i> Dashboard</Link>)}
                     <Link to="/contact" className="nav-item"><i className="fas fa-phone-alt"></i> Contact Us</Link>
                 </nav>
 
@@ -65,15 +65,15 @@ const Header = () => {
                 {/* Right-aligned Buttons */}
                 <div className="header-buttons">
 
-                    <Link to="/user-register" className="data-insights">
+                    {!isLoggedIn && ( <Link to="/user-register" className="data-insights">
                         {/* <i className="fas fa-chart-line"></i>  */}
                         Sign Up
-                    </Link>
+                    </Link>)}
 
                     {isLoggedIn ? (
                         // Show Logout button if logged in
-                        <Link to="/logout" className="logout-btn" 
-                        onClick={handleLogout}>
+                        <Link to="/logout" className="logout-btn"
+                            onClick={handleLogout}>
                             <i className="fas fa-sign-out-alt"></i> Logout
                         </Link>
                     ) : (

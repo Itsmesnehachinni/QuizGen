@@ -5,45 +5,40 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { Modal, Button, Form } from 'react-bootstrap';
 import './AddQuestion.css'; // Ensure your custom CSS file is imported
+import { v4 as uuidv4 } from 'uuid';
 
-const AddMedicine = ({showAddModal, setShowAddModal, setRefreshData,pharmacyId}) => {
+const AddQuestion = ({ showAddModal, setShowAddModal, setRefreshData }) => {
   const navigate = useNavigate();
-  const today = new Date().toISOString().split('T')[0];
 
   const formik = useFormik({
     initialValues: {
-      medicineName: '',
-      manfacturingDate: '',
-      expiryDate: '',
-      manfacturingCompany: '',
-      medicineDescription: '',
-      stock: '',
-      price: '',
+      questionDescription: '',
+      optionOne: '',
+      optionTwo: '',
+      optionThree: '',
+      optionFour: '',
+      correctAnswer: '',
+      level: '',
     },
     validationSchema: yup.object({
-      medicineName: yup.string().required('Medicine Name cannot be empty'),
-      manfacturingDate: yup.string().required('Manufacturing Date cannot be empty'),
-      expiryDate: yup.string().required('Expiry Date cannot be empty'),
-      manfacturingCompany: yup.string().required('Manufacturing Company cannot be empty'),
-      medicineDescription: yup.string().required('Medicine Description cannot be empty'),
-      stock: yup.string()
-        .matches(/^[1-9]\d*$/, 'Stock must be a number and greater than 0')
-        .required('Stock Count cannot be empty'),
-      price: yup.number()
-        .positive('Price must be greater than 0')
-        .min(0.01, 'Price must be at least 0.01')
-        .required("Price cannot be empty"),
+      questionDescription: yup.string().required('Question Description cannot be empty'),
+      optionOne: yup.string().required('Option One cannot be empty'),
+      optionTwo: yup.string().required('Option Two cannot be empty'),
+      correctAnswer: yup.string().required('Correct Answer cannot be empty'),
+      level: yup.string().required('Question difficulty level cannot be empty'),
+
     }),
     onSubmit: values => {
-      console.log("values" + JSON.stringify(values));
+      console.log("on submit values:" + JSON.stringify(values));
+      const questionId = uuidv4();
       const formData = {
         ...values,
-        pharmacyId,
-        
-      };
-      console.log("body:",formData);
+        questionId,
 
-      fetch('http://localhost:3000/api/v1/pharma-service/medicine/addMedicine', {
+      };
+      console.log("body:", formData);
+
+      fetch('http://localhost:7070/questions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,30 +46,36 @@ const AddMedicine = ({showAddModal, setShowAddModal, setRefreshData,pharmacyId})
         body: JSON.stringify(formData),
       })
         .then(response => {
-         
-          if (!response.ok) {
-            if(response.status == '409'){
-              alert("Medicine already exists, you can update details instead of re-adding again")
-              handleModalDialogue(false)
-            }else{
-              alert("Error adding medicine, please try again");
-            }              
-              throw new Error(response.status);                      
-          } 
-            return response.json();          
+          //uncomment the below code when backend is ready
+          // if (!response.ok) {
+          //   if(response.status == '409'){
+          //     alert("Medicine already exists, you can update details instead of re-adding again")
+          //     handleModalDialogue(false)
+          //   }else{
+          //     alert("Error adding medicine, please try again");
+          //   }              
+          //     throw new Error(response.status);                      
+          // } 
+          return response.json();
         })
         .then((responseJson) => {
-          console.log("responseJson.status",responseJson.status)
-          if(responseJson.status === '409') {
-            alert(responseJson.message)
-          }else{
-            alert("Medicine added successfully");
-            handleModalDialogue(false)
-            navigate("/pharmacy-dashboard")
-          }          
+          // uncomment the below when backend is ready or intergrated with it
+          // console.log("responseJson.status",responseJson.status)
+          // if(responseJson.status === '409') {
+          //   alert(responseJson.message)
+          // }else{
+          //   alert("Question added successfully");
+          //   handleModalDialogue(false)
+          //   navigate("/admin-dashboard")
+          // }     
+
+          // delete the below after integration
+          alert("Question added successfully");
+          handleModalDialogue(false)
+          navigate("/admin-dashboard")
         })
         .catch((error) => {
-          console.log('Error occurred while adding medicine details: ' + error);
+          console.log('Error occurred while adding question details: ' + error);
         });
     },
   });
@@ -86,47 +87,65 @@ const AddMedicine = ({showAddModal, setShowAddModal, setRefreshData,pharmacyId})
 
   return (
     <div className='add-medicine-modal-container'>
-      <Modal show={showAddModal} 
-      onHide={() => handleModalDialogue(false)} 
-      backdrop="static"
-      size="lg">
+      <Modal show={showAddModal}
+        onHide={() => handleModalDialogue(false)}
+        backdrop="static"
+        size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>ADD MEDICINE</Modal.Title>
+          <Modal.Title>ADD QUESTION</Modal.Title>
         </Modal.Header>
         <Form onSubmit={formik.handleSubmit}>
           <Modal.Body>
             {[
-              { label: 'Medicine Name*', id: 'medicineName', type: 'text', placeholder: 'Enter Medicine Name' },
-              { label: 'Manufacturing Date*', id: 'manfacturingDate', type: 'date', placeholder: '' },
-              { label: 'Expiry Date*', id: 'expiryDate', type: 'date', placeholder: '' },
-              { label: 'Manufacturing Company*', id: 'manfacturingCompany', type: 'text', placeholder: 'Enter manufacturing company name' },
-              { label: 'Medicine Description*', id: 'medicineDescription', type: 'text', placeholder: 'Enter medicine description' },
-              { label: 'Stock*', id: 'stock', type: 'text', placeholder: 'Enter available stock count' },
-              { label: 'Price*', id: 'price', type: 'text', placeholder: 'Enter MRP' },
+              { label: 'Question Description*', id: 'questionDescription', type: 'text', placeholder: 'Enter Question' },
+              { label: 'Option One*', id: 'optionOne', type: 'text', placeholder: 'Enter option one details' },
+              { label: 'Option Two*', id: 'optionTwo', type: 'text', placeholder: 'Enter option two details' },
+              { label: 'Option Three', id: 'optionThree', type: 'text', placeholder: 'Enter option three details' },
+              { label: 'Option Four', id: 'optionFour', type: 'text', placeholder: 'Enter option four details' },
+              { label: 'Correct Answer', id: 'correctAnswer', type: 'text', placeholder: 'Enter Correct Answer' },
+
             ].map(({ label, id, type, placeholder }) => (
               <Form.Group controlId={id} className="mb-3" key={id}>
                 <Form.Label>{label}</Form.Label>
                 <Form.Control
                   type={type}
                   placeholder={placeholder}
-                  value={formik.values[id]}
+                  value={formik.values[id] || ''}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                   isInvalid={formik.touched[id] && !!formik.errors[id]}
                   className="custom-input" // Custom class for input fields
-                  min={id === 'expiryDate' ? today : undefined} // Disable future dates for manufacturing date
-                  max={id === 'manfacturingDate' ? today : undefined} // Disable past dates for expiry date
                 />
                 <Form.Control.Feedback type="invalid">
                   {formik.errors[id]}
                 </Form.Control.Feedback>
               </Form.Group>
             ))}
+
+            <Form.Group controlId="level" className="mb-3">
+              <Form.Label>Level*</Form.Label>
+              <Form.Control
+                as="select"
+                value={formik.values.level}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                isInvalid={formik.touched.level && !!formik.errors.level}
+                className="custom-input" // Custom class for select dropdown
+              >
+                <option value="">Select Level</option>
+                <option value="EASY">EASY</option>
+                <option value="MEDIUM">MEDIUM</option>
+                <option value="HARD">HARD</option>
+              </Form.Control>
+              <Form.Control.Feedback type="invalid">
+                {formik.errors.level}
+              </Form.Control.Feedback>
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button 
-             variant="secondary"
-             onClick={() => handleModalDialogue(false)}>
+            <Button
+              variant="secondary"
+              onClick={() => handleModalDialogue(false)}>
               Close
             </Button>
             <Button type="submit" variant="primary">
@@ -139,4 +158,4 @@ const AddMedicine = ({showAddModal, setShowAddModal, setRefreshData,pharmacyId})
   );
 };
 
-export default AddMedicine;
+export default AddQuestion;

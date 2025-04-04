@@ -48,7 +48,7 @@ function App() {
           if (responseJson.data.role === 'CUSTOMER') {
             // alert("User logged in successfully!!!");
             dispatch({ type: 'SET_CUSTOMER_ID', payload: responseJson.data.id });
-            navigate("/userDashboard/quiz");
+            navigate("/userDashboard");
           } else {
             // alert("User logged in successfully!!!");
             dispatch({ type: 'SET_PHARMACY_ID', payload: responseJson.data.id });

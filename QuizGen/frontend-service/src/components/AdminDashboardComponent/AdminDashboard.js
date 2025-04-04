@@ -12,29 +12,34 @@ import {
   MDBTableHead,
 } from "mdb-react-ui-kit";
 import { useEffect, useState } from 'react';
-import UpdateMedicine from '../UpdateQuestionComponent/UpdateQuestion';
+import UpdateQuestion from '../UpdateQuestionComponent/UpdateQuestion';
 import './AdminDashboard.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import AddQuestion from '../AddQuestion/AddQuestion';
 
-function PharmacyDashboard() {
-  const [medicines, setMedicines] = useState([]);
+function AdminDashboard() {
+  const [questions, setQuestions] = useState([]);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showAddModal, setShowAddModal] = useState(false);
-  const pharmacyId = useSelector((state) => state.pharmacyId);
-  const [updatedMedicineId, setUpdatedMedicineId] = useState();
+  const [updatedQuestionId, setUpdatedQuestionId] = useState();
   const [refershData, setRefreshData] = useState(true);
 
 
   const fetchData = async () => {
-    const response = await fetch(`http://localhost:3000/api/v1/pharma-service/medicine/getAllMedicinesByPharmacyId?pharmacyId=${pharmacyId}`);
-    const responseJson = await response.json();
-    if (responseJson.status === 200 && responseJson.data !== null) {
-      setMedicines(responseJson.data.pharmacyMedicines);
-    } else {
-      // alert("Error while fetching the medicine details, please try again after sometime");
-    }
+    const response = await fetch(`http://localhost:7070/questions`);
+    const responseJson = await response.json();    
+    //uncomment the below when integrated with original backend
+    // if (responseJson.status === 200 && responseJson.data !== null) {
+    //   console.log("setting questions")
+      
+    //   setQuestions(responseJson.data.questions);
+    // } else {
+    //   // alert("Error while fetching the medicine details, please try again after sometime");
+    // }
+    
+    //uncomment the below line after back end integrations
+    setQuestions(responseJson);
   }
 
   // useEffect(() => {
@@ -47,24 +52,24 @@ function PharmacyDashboard() {
   useEffect(() => {
     if (refershData) {
       fetchData();
-      console.log("medicines", medicines);
+      console.log("questions:", questions);
     }
     setRefreshData(false);
   }, [refershData]);
 
-  function displayUpdateMedicineModal(pharmacyMedicineId) {
+  function displayUpdateQuestionModal(questionId) {
+    console.log("Admin Dashboard: updatedQuestionId",questionId)
     setShowUpdateModal(true);
     setRefreshData(true)
-    setUpdatedMedicineId(pharmacyMedicineId);
+    setUpdatedQuestionId(questionId);
   };
 
-  const handleDelete = async (pharmacyMedicineId) => {
+  const handleDelete = async (QuestionId) => {
     try {
-      const deleteResponse = await axios.delete(`http://localhost:3000/api/v1/pharma-service/medicine/deleteMedicine`
+      const deleteResponse = await axios.delete(`http://localhost:7070/questions/${QuestionId}`
         , {
           params: {
-            pharmacyMedicineId: pharmacyMedicineId,
-            pharmacyId: pharmacyId
+            QuestionId: QuestionId
           }
         });
       if (deleteResponse.status === 200) {
@@ -80,7 +85,7 @@ function PharmacyDashboard() {
     }
   };
 
-  function handleAddMedicine() {
+  function handleAddQuestion() {
     setShowAddModal(true);
     setRefreshData(true)
   }
@@ -92,14 +97,13 @@ function PharmacyDashboard() {
       <div className="add-Medicine-btn-container d-flex justify-content-end align-items-center">
         <button type="button"
           class="btn btn-primary m-1 btn-lg"
-          onClick={handleAddMedicine}>
+          onClick={handleAddQuestion}>
           Add Question</button>
 
         {showAddModal && <AddQuestion
           showAddModal={showAddModal}
           setShowAddModal={setShowAddModal}
           setRefreshData={setRefreshData}
-          pharmacyId={pharmacyId}
         ></AddQuestion>}
 
 
@@ -119,30 +123,42 @@ function PharmacyDashboard() {
                       <th className="py-4 header-font-size" scope="col">Expiry Date</th> */}
                       <th className="py-4  header-font-size" scope="col">Option 1</th>
                       <th className="py-4  header-font-size" scope="col">Option 2</th>
+                      <th className="py-4  header-font-size" scope="col">Option 3</th>
+                      <th className="py-4  header-font-size" scope="col">Option 4</th>
+                      <th className="py-4  header-font-size" scope="col">Answer</th>
+                      <th className="py-4  header-font-size" scope="col">Level</th>
                       <th className="py-4  header-font-size" scope="col">Update</th>
                       <th className="py-4  header-font-size" scope="col">Delete</th>
                     </tr>
                   </MDBTableHead>
                   <MDBTableBody>
-                    {medicines.map((medicine) => (
-                      <tr className="fw-normal" key={medicine.pharmaMedicineId}>
+                    {questions.map((question) => (
+                      <tr className="fw-normal" key={question.id}>
                         <th className="py-3 data-font-size">
-                          <span className="ms-2"> {medicine.medicineName}</span>
+                          <span className="ms-2"> {question.questionDescription}</span>
                         </th>
-                        {/* <td className="align-middle py-3 data-font-size">
-                          <span>{medicine.manfacturingDate}</span>
+                        <td className="align-middle py-3 data-font-size">
+                          <span>{question.optionOne}</span>
                         </td>
                         <td className="align-middle py-3 data-font-size">
-                          <span>{medicine.expiryDate}</span>
-                        </td> */}
-                        <td className="align-middle py-3 data-font-size">
-                          {/* <span>{medicine.stock}</span> */}
-                          <span>{medicine.medicineName === 'napra' ? medicine.stock : medicine.medicineDescription }</span>
+                          <span>{question.optionTwo}</span>
                         </td>
                         <td className="align-middle py-3 data-font-size">
-                          {/* <span>{medicine.price}</span> */}
-                          <span>{medicine.medicineName !== 'napra' ? medicine.manfacturingCompany : medicine.medicineDescription }</span>
+                          <span>{question.optionThree}</span>
                         </td>
+                        <td className="align-middle py-3 data-font-size">
+                          <span>{question.optionFour}</span>
+                        </td>
+                        <td className="align-middle py-3 data-font-size">
+                          <span>{question.correctAnswer}</span>
+                        </td>
+                        <td className="align-middle py-3 data-font-size">
+                          <span>{question.level}</span>
+                        </td>
+
+                        {/* static page data */}
+                        
+                       
                         <td className="align-middle py-3 data-font-size">
 
                           <MDBIcon
@@ -151,14 +167,14 @@ function PharmacyDashboard() {
                             color="primary"
                             size="lg"
                             className="me-3"
-                            onClick={() => displayUpdateMedicineModal(medicine.pharmaMedicineId)}
+                            onClick={() => displayUpdateQuestionModal(question.id)}
                           />
-                          {showUpdateModal && <UpdateMedicine
+                          {showUpdateModal && <UpdateQuestion
                             showUpdateModal={showUpdateModal}
                             setShowUpdateModal={setShowUpdateModal}
                             setRefreshData={setRefreshData}
-                            pharmaMedicineId={updatedMedicineId}
-                          ></UpdateMedicine>}
+                            updatedQuestionId={updatedQuestionId}
+                          ></UpdateQuestion>}
                         </td>
                         <td className="align-middle py-3 data-font-size">
                           <MDBIcon
@@ -167,7 +183,7 @@ function PharmacyDashboard() {
                             color="danger"
                             size="lg"
                             className="me-3"
-                            onClick={() => handleDelete(medicine.pharmaMedicineId)}
+                            onClick={() => handleDelete(question.id)}
                           />
                         </td>
                       </tr>
@@ -187,4 +203,4 @@ function PharmacyDashboard() {
   );
 }
 
-export default PharmacyDashboard
+export default AdminDashboard;

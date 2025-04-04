@@ -1,150 +1,140 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import './ProgressTracking.css'; 
-import { FaPhone, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa'; 
-import Typography from '@mui/material/Typography';
+import {
+    BarElement,
+    CategoryScale,
+    Chart as ChartJS,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement, // <-- Add this line
+    Title,
+    Tooltip,
+    ArcElement
+} from 'chart.js';
+import React from 'react';
+import { Bar, Pie } from 'react-chartjs-2';
+import './ProgressTracking.css';
 import { useNavigate } from "react-router-dom";
-import React from 'react'
-import Form from 'react-bootstrap/Form';
 
 
+// Register the components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    LineElement, // <-- Register LineElement
+    PointElement, // <-- Register PointElement
+    Title,
+    Tooltip,
+    Legend,
+    ArcElement
+);
 
-
-function PharmaciesComponent() {
-    const [pharmacies, setPharmacies] = React.useState([]);
-    const [filteredPharmacies, setFilteredPharmacies] = React.useState([]);
-    const [searchTerm, setSearchTerm] = React.useState('');
+const ProgressTracking = () => {
     const navigate = useNavigate();
+    const levelBasedAvgScores = {
+        labels: ['Easy', 'Medium', 'Difficult'],
+        datasets: [
+            {
+                label: 'Scores In Percentages',
+                data: [90, 85, 80],
+                backgroundColor: ['rgba(75, 192, 192, 0.35)', 'rgba(153, 102, 255, 0.35)', 'rgba(255, 99, 132, 0.35)'],
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1.5,
+            },
+        ],
+    };
 
-    React.useEffect(() => {
-        fetch('http://localhost:3000/api/v1/pharma-service/pharma/getAllPharmacies')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                setPharmacies(data.data.pharmacies);
-                setFilteredPharmacies(data.data.pharmacies);
-            });
-    }, [])
+    const topTenUserQuizData = {
+        labels: ['Quiz-1', 'Quiz-2', 'Quiz-3', 'Quiz-4', 'Quiz-5', 'Quiz-6', 'Quiz-7', 'Quiz-8', 'Quiz-9'],
+        datasets: [
+            {
+                label: 'Scores out of 20 questions',
+                data: [20, 15, 12, 20, 10, 11, 20, 17, 7, 19],
+                backgroundColor: 'rgba(54, 162, 235, 0.35)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1,
+            },
+        ],
+    };
 
-    function showPharmacyMedicines(pharmacyId) {
-        navigate(`/performQuiz`)
-        // navigate(`/customerDashboard/medicines`)
+    const topTenUserQuizDataOptions = {
+        responsive: true,
+        indexAxis: 'x',
+        maintainAspectRatio: true,
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
 
+        },
+        datasets: {
+            bar: {
+                barPercentage: 0.75,  // Decrease this value to increase space between bars
+                categoryPercentage: 0.8,  // Decrease this value to increase space between categories
+            },
+        },
     }
 
-    // Function to handle search input change
-    const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
+
+    const userAvgScore = {
+        labels: ['Avg Score'],
+        datasets: [
+            {
+                label: 'User average Score of all quiz',
+                data: [90, 10],
+                backgroundColor: ['rgba(235, 126, 224, 0.35)', 'rgba(255, 255, 255, 0.35)'],
+                borderColor: ['rgba(235, 126, 224, 1)', 'rgba(255, 255, 255, 1)'],
+                borderWidth: 1.5,
+            },
+        ],
     };
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            handleSearch(event);
-        }
-    };
-
-    // Filter pharmacies based on search term
-    function handleSearch() {
-        console.log("searchTerm:" + searchTerm);
-        if (searchTerm === '' || searchTerm === null) {
-            setFilteredPharmacies(pharmacies)
-        }
-        else {
-            // setFilteredPharmacies(
-            //     pharmacies.filter(pharmacy =>
-            //         pharmacy.medicines.some(medicine =>
-            //             medicine.toLowerCase().includes(searchTerm.toLowerCase())
-            //         )
-            //     )
-            // )
-            const filtered = [];
-
-            pharmacies.forEach(pharmacy => {
-                if (pharmacy.medicines.some(medicine => 
-                    // medicine.toLowerCase().includes(searchTerm.toLowerCase()) //contains match
-                    medicine.toLowerCase()===(searchTerm.toLowerCase()) //contains match
-
-                )) {
-                    filtered.push(pharmacy);
-                }
-            });
-            setFilteredPharmacies(filtered);
-        }
+    function handleStartQuiz() {
+        navigate(`/performQuiz`);
     }
 
     return (
-        <div class="customer-dashboard">
-            <div class="search-bar">
-                <Row className="mb-4">
-                    <Col xs={12} className="d-flex justify-content-end align-items-center">
-                        <Form.Control
-                            // type="text"
-                            placeholder="Search for a medicine..."
-                            value={searchTerm}
-                            onChange={handleSearchChange}
-                            onKeyDown={handleKeyPress} // Add this line to handle Enter key
-                            style={{
-                                width: '375px',
-                                height: '45px',
-                                marginRight: '10px',
-                                /*backgroundColor :'lightskyblue'*/
-                            }} // Adjust the width as needed
-                        />
-                        <Button onClick={handleSearch} variant="primary">
-                            Search
-                        </Button>
-                    </Col>
-                </Row>
+        <div className="dashboard-page" style={{
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+        }}>
+
+            <div>
+                <div className="d-flex justify-content-end me-5 mt-0">
+
+                    <button class="btn btn-success mb-1 px-3 py-2 me-3 btn-lg mt-1 btn-txt fs-5"
+                        type="button"
+                        onClick={handleStartQuiz}>
+                        Start A New Quiz
+                    </button>
+
+                </div>
             </div>
 
+            {/* <div className="dashboard-title-container">
+                <div className="dashboard-title-txt">
+                    <h2> User Quiz Tracking Dashboard</h2>
+                </div>
+            </div> */}
 
+            <div className="stats-row">
+                <div className="stats-card">
+                    <h2>Level Based Avg Score</h2>
+                    <Bar data={levelBasedAvgScores} />
+                </div>
 
-            <div className='pharmacy-card-container'>
-                <Row className="justify-content-center">
-                    {filteredPharmacies.map(pharmacy => (
-                        <Col key={pharmacy.pharmacyId} xs={12} sm={6} >
-                            <Card className="pharmacy-card">
-                                <Card.Header className="text-center">
-                                    <h3>{pharmacy.pharmaName}</h3>
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Text>
-                                        <Typography variant="h5" className="mt-2" style={{ fontSize: '1.25rem' }}>
-                                            <strong>License:</strong> {pharmacy.licenseNumber}
-                                        </Typography>
-                                    </Card.Text>
-                                    <Card.Title>Contact Information</Card.Title>
-                                    <ListGroup variant="flush">
-                                        <ListGroup.Item>
-                                            <FaPhone className="me-1" /> {pharmacy.phoneNumber}
-                                        </ListGroup.Item>
-                                        <ListGroup.Item>
-                                            <FaEnvelope className="me-1" /> {pharmacy.emailAddress}
-                                        </ListGroup.Item>
-                                        <ListGroup.Item>
-                                            <FaMapMarkerAlt className="me-1" />
-                                            {pharmacy.street}, {pharmacy.city}
-                                        </ListGroup.Item>
-                                    </ListGroup>
+                <div className="stats-card">
+                    <h2> Latest 10 Quiz Tracking Stats</h2>
+                    <Bar data={topTenUserQuizData} options={topTenUserQuizDataOptions} />
+                </div>
 
-                                    <Button id="view-medicines-btn" 
-                                    onClick={() => showPharmacyMedicines(pharmacy.pharmacyId)}  
-                                    type="button" 
-                                    className="my-4 view-medicines-btn">
-                                        View Medicines
-                                    </Button>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    ))}
-                </Row>
+                <div className="stats-card">
+                    <h2> User Average Score</h2>
+                    <Pie data={userAvgScore} options={{ responsive: true }} width={700} height={700} />
+                </div>
             </div>
         </div>
-
     );
-}
+};
 
-export default PharmaciesComponent;
+export default ProgressTracking;

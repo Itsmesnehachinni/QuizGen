@@ -6,24 +6,27 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './UpdateQuestion.css';
 
-const UpdateMedicine = ({ showUpdateModal, setShowUpdateModal,pharmaMedicineId , setRefreshData }) => {
-  console.log("pharmacyMedicineId", pharmaMedicineId);
+const UpdateQuestion = ({ showUpdateModal, setShowUpdateModal, updatedQuestionId, setRefreshData }) => {
   const navigate = useNavigate();
-  const [medicineData, setMedicineData] = useState({
-    medicineName: '',
-    manfacturingDate: '',
-    expiryDate: '',
-    manufacturingCompany: '',
-    medicineDescription: '',
-    stock: '',
-    price: '',
+  const [questionData, setQuestionData] = useState({
+    questionDescription: '',
+    optionOne: '',
+    optionTwo: '',
+    optionThree: '',
+    optionFour: '',
+    correctAnswer: '',
+    level: ''
   });
-  const today = new Date().toISOString().split('T')[0];
 
   const fetchData = () => {
-    return fetch(`http://localhost:3000/api/v1/pharma-service/medicine/getMedicineById?pharmacyMedicineId=${pharmaMedicineId}`)
+    console.log("UpdateQuestion :: showUpdateModal",showUpdateModal)
+    console.log("UpdateQuestion: question Id", updatedQuestionId);
+    return fetch(`http://localhost:7070/questions/${updatedQuestionId}`)
       .then(response => response.json())
-      .then(responseData => setMedicineData(responseData.data))
+      //uncomment the below line after backend integration
+      // .then(responseData => setQuestionData(responseData.data))
+      //comment the below line after backend integration
+      .then(responseData => setQuestionData(responseData))
       .catch(error => {
         console.error('Error fetching medicine details:', error);
       });
@@ -34,21 +37,15 @@ const UpdateMedicine = ({ showUpdateModal, setShowUpdateModal,pharmaMedicineId ,
   }, []);
 
   const formik = useFormik({
-    initialValues: medicineData,
+    initialValues: questionData,
     enableReinitialize: true,
     validationSchema: yup.object({
-      manfacturingDate: yup.string().required('Manufacturing Date cannot be empty'),
-      expiryDate: yup.string().required('Expiry Date cannot be empty'),
-      stock: yup.string()
-        .matches(/^[1-9]\d*$/, 'Stock must be a number and greater than 0')
-        .required('Stock Count cannot be empty'),
-      price: yup.number()
-        .positive('Price must be greater than 0')
-        .min(0.01, 'Price must be at least 0.01')
-        .required("Price cannot be empty"),
+      optionOne: yup.string().required('Manufacturing Date cannot be empty'),
+      optionTwo: yup.string().required('Option Two cannot be empty'),
+      correctAnswer: yup.string().required('Correct Answer cannot be empty'),
     }),
     onSubmit: values => {
-      fetch(`http://localhost:3000/api/v1/pharma-service/medicine/editMedicine`, {
+      fetch(`http://localhost:7070/questions/${updatedQuestionId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -57,24 +54,26 @@ const UpdateMedicine = ({ showUpdateModal, setShowUpdateModal,pharmaMedicineId ,
       })
         .then(response => {
           if (!response.ok) {
-            alert("Failed to update medicine details");
+            alert("Failed to update question details");
             throw new Error(response.status);
           }
           handleUpdateModalDialogue(false)
-          navigate("/pharmacy-dashboard")
+          navigate("/admin-dashboard")
         })
         
         .catch(error => {
-          console.log('Error occurred while updating medicine details: ' + error);
+          console.log('Error occurred while updating question details: ' + error);
         });
     }
   });
 
-  if (!medicineData) {
+  if (!questionData) {
+    console.log("questionData::",questionData)
     return <div>Loading...</div>;
   }
 
   const handleUpdateModalDialogue = (showModalVal) => {
+    console.log("Update:: showModalVal:",showModalVal)
     setShowUpdateModal(showModalVal);
     setRefreshData(true);
   };
@@ -94,77 +93,101 @@ const UpdateMedicine = ({ showUpdateModal, setShowUpdateModal,pharmaMedicineId ,
           <Modal.Body>
             <Form onSubmit={formik.handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Question Name</Form.Label>
+                <Form.Label>Question Description</Form.Label>
                 <Form.Control
-                  id="medicineName"
-                  name="medicineName"
+                  id="questionDescription"
+                  name="questionDescription"
                   type="text"
-                  value={formik.values.medicineName}
+                  value={formik.values.questionDescription}
                   readOnly
                 />
-              </Form.Group>
-
-              {/* <Form.Group className="mb-3">
-                <Form.Label>Manufacturing Date*</Form.Label>
-                <Form.Control
-                  id="manfacturingDate"
-                  name="manfacturingDate"
-                  type="date"
-                  value={formik.values.manfacturingDate}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  max={today}
-                />
-                {formik.errors.manfacturingDate && formik.touched.manfacturingDate ? (
-                  <span className="text-danger">{formik.errors.manfacturingDate}</span>
-                ) : null}
-              </Form.Group>
+              </Form.Group>          
 
               <Form.Group className="mb-3">
-                <Form.Label>Expiry Date*</Form.Label>
+                <Form.Label>Option One*</Form.Label>
                 <Form.Control
-                  id="expiryDate"
-                  name="expiryDate"
-                  type="date"
-                  value={formik.values.expiryDate}
-                  onBlur={formik.handleBlur}
-                  onChange={formik.handleChange}
-                  min={today}
-                />
-                {formik.errors.expiryDate && formik.touched.expiryDate ? (
-                  <span className="text-danger">{formik.errors.expiryDate}</span>
-                ) : null}
-              </Form.Group> */}
-
-              <Form.Group className="mb-3">
-                <Form.Label>Option 1*</Form.Label>
-                <Form.Control
-                  id="stock"
-                  name="stock"
+                  id="optionOne"
+                  name="optionOne"
                   type="text"
-                  value={formik.values.stock}
+                  value={formik.values.optionOne}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.stock && formik.touched.stock ? (
-                  <span className="text-danger">{formik.errors.stock}</span>
+                {formik.errors.optionOne && formik.touched.optionOne ? (
+                  <span className="text-danger">{formik.errors.optionOne}</span>
                 ) : null}
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Option 2*</Form.Label>
+                <Form.Label>Option Two*</Form.Label>
                 <Form.Control
-                  id="price"
-                  name="price"
+                  id="optionTwo"
+                  name="optionTwo"
                   type="text"
-                  value={formik.values.price}
+                  value={formik.values.optionTwo}
                   onBlur={formik.handleBlur}
                   onChange={formik.handleChange}
                 />
-                {formik.errors.price && formik.touched.price ? (
-                  <span className="text-danger">{formik.errors.price}</span>
+                {formik.errors.optionTwo && formik.touched.optionTwo ? (
+                  <span className="text-danger">{formik.errors.optionTwo}</span>
                 ) : null}
               </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Option Three</Form.Label>
+                <Form.Control
+                  id="optionThree"
+                  name="optionThree"
+                  type="text"
+                  value={formik.values.optionThree}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.optionThree && formik.touched.optionThree ? (
+                  <span className="text-danger">{formik.errors.optionThree}</span>
+                ) : null}
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Option Four</Form.Label>
+                <Form.Control
+                  id="optionFour"
+                  name="optionFour"
+                  type="text"
+                  value={formik.values.optionFour}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.optionFour && formik.touched.optionFour ? (
+                  <span className="text-danger">{formik.errors.optionFour}</span>
+                ) : null}
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Correct Answer*</Form.Label>
+                <Form.Control
+                  id="correctAnswer"
+                  name="correctAnswer"
+                  type="text"
+                  value={formik.values.correctAnswer}
+                  onBlur={formik.handleBlur}
+                  onChange={formik.handleChange}
+                />
+                {formik.errors.correctAnswer && formik.touched.correctAnswer ? (
+                  <span className="text-danger">{formik.errors.correctAnswer}</span>
+                ) : null}
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Level</Form.Label>
+                <Form.Control
+                  id="level"
+                  name="level"
+                  type="text"
+                  value={formik.values.level}
+                  readOnly
+                />
+              </Form.Group>  
 
               <Modal.Footer>
                 <Button variant="secondary" onClick={() => handleUpdateModalDialogue(false)}>
@@ -182,4 +205,4 @@ const UpdateMedicine = ({ showUpdateModal, setShowUpdateModal,pharmaMedicineId ,
   );
 };
 
-export default UpdateMedicine;
+export default UpdateQuestion;
